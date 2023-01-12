@@ -2,25 +2,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    background-color: gray;
     min-height: 100vh;
-
 }
 
-#mainContainer {
-    outline-style: solid;
-    background-color: blue;
+.container-sm {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    height: 500px;
 }
 
-.row {
-    display: flex;
-    flex-grow: 1;
-}
-
-.buttons {
-    flex-grow: 1;
+#inputlg {
+    width: 200px;
 }
