@@ -10,13 +10,15 @@
   </head>
   <body>
     <div class="container-sm">
-      <input class="form-control" id="input" type="text" placeholder="0">
+      <input class="form-control" id="result" type="text" placeholder="0">
+      <input class="form-control" id="input" type="text" placeholder="">
+
       <div class="btn-group-vertical">
       <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">    
-        <button class="btn btn-dark"class="buttons" id="C" onclick="clearAll()">C</button>
-        <button class="btn btn-dark"class="buttons" id="parenthesis" onclick="addToEquation('()')">()</button>
-        <button class="btn btn-dark"class="buttons" id="percent" onclick="addToEquation('%')">%</button>
+        <button class="btn btn-dark"class="buttons" id="C" onclick="clearAll()">AC</button>
+        <button class="btn btn-dark"class="buttons" id="D" onclick="deleteEntry()">CE</button>
         <button class="btn btn-dark"class="buttons" id="/" onclick="addToEquation('/')">/</button>
+
       </div>
       <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">
         <button class="btn btn-dark"class="buttons" id="7" onclick="addToEquation('7')">7</button>
@@ -37,7 +39,6 @@
         <button class="btn btn-dark"class="buttons" id="+" onclick="addToEquation('+')">+</button>
       </div>
       <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">
-        <button class="btn btn-dark"class="buttons" id="negativeSymbol" onclick="addToEquation('+/-')">+/-</button>
         <button class="btn btn-dark"class="buttons" id="0" onclick="addToEquation('0')">0</button>
         <button class="btn btn-dark"class="buttons" id="period" onclick="addToEquation('.')">.</button>
         <button class="btn btn-dark"class="buttons" id="=" onclick="compute()">=</button>

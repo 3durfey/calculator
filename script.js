@@ -1,77 +1,102 @@
-let equationString = "";
-let bracketLeft = false;
-let brackets = '()';
-
-document.getElementById("input").value = equationString;
+let number = [];
+let ArrayOfNumbers = new Array();
+let lastEntry = '';
+//output location
+let output = document.getElementById("result");
+let enteredValue = document.getElementById("input");
 
 //add element to expression
-function addToEquation(input)
-{
-    let length = equationString.length;
-    //determine which bracket to insert
-    if(input === brackets){
-        if(length === 0 
-        || equationString[length - 1] === subtract 
-        || equationString[length - 1] === multiply 
-        || equationString[length - 1] === divide 
-        || equationString[length - 1] === add){
-            equationString += '(';
-            bracketLeft = true;
-        }
-        else if(bracketLeft === true){
-            equationString += ')';
-            bracketLeft = false;
-        }
-    }
-    else {
-        equationString += input;
-    }
-    display();
-}
 //display function
-const display = () => document.getElementById("input").value = equationString;
+function addToEquation(input) { 
+    console.log('number', number);
+
+    if (!isNaN(input) || input === '.') 
+    {
+        number.push(input);
+    }
+    else 
+    {
+        ArrayOfNumbers.push(number.join('')), ArrayOfNumbers.push(input), number = [];
+    }
+    lastEntry = input;
+    output.value = number.join('');
+    enteredValue.value = input;
+    console.log('input ', input);
+    console.log('number', number);
+    console.log('array ', ArrayOfNumbers);
+}
+
 //clear equation
 const clearAll = () => {
-    equationString = "";
-    display();}
+    document.getElementById("input").value = '';
+    ArrayOfNumbers = [];
+    number = [];}
+//delete
+const deleteEntry = () => {
+    console.log('number in string', number.join(''));
+    console.log(output)
+    if(number.length === 1)
+    {
+        ArrayOfNumbers.pop();
+    }
+    else
+    {
+        number.pop();
+        console.log('number in string', number.join(''));
+    }
+    output.value = number.join('');
+    document.getElementById("input").value -= lastEntry;
+    console.log('input ', input);
+    console.log('number', number);
+    console.log('array ', ArrayOfNumbers);
+}
+
 //find result
 function compute()
 {
-    const elements = Array.from(equationString);
-    let ArrayOfNumbers = new Array();
-    let indexOfArrayOfNumbers = 0;
-    for(let x = 0; x < elements.length; x++) {
-        if(isNaN(elements[x])) {
-            indexOfArrayOfNumbers++;
-            ArrayOfNumbers[indexOfArrayOfNumbers] = elements[x];
-            indexOfArrayOfNumbers++;
-            ArrayOfNumbers[indexOfArrayOfNumbers] = "";
+    if(number.length != 1) {
+        ArrayOfNumbers.push(number.join(''));
+    }
+    let tempValue = 0;
+    let operator = 1;
+    do {
+        if(elements[operator] == '/') {
+           tempValue = Number(elements[operator - 1]) / Number(elements[operator + 1]);
+           elements[operator + 1] = tempValue;
+           elements.splice(operator - 1, 2);
         }
-        else if(x === 0) {
-            ArrayOfNumbers[indexOfArrayOfNumbers] = elements[x];
+        else if(elements[operator] == '*') {
+            tempValue = Number(elements[operator - 1]) * Number(elements[operator + 1]);
+            elements[operator + 1] = tempValue;
+            elements.splice(operator - 1, 2);
         }
+        if(!(operator + 2 > elements.length)){
+            operator += 2;
+        } 
         else {
-            ArrayOfNumbers[indexOfArrayOfNumbers] += elements[x];
+            operator = 1;
         }
+    } while (elements.includes('/') || elements.includes('*'));
+
+    if(elements.length === 1) {
+        output.value = elements[0];
+        return;
     }
-    let tempNumber = 0;
-    for(let x = 0; x < ArrayOfNumbers.length; x++) {
-        let sumOfEquation = 0;
-        switch(ArrayOfNumbers[x]) {
-            case ('/'):
-                tempNumber = Number(ArrayOfNumbers[x-1]) / Number(ArrayOfNumbers[x+1]);
-                break;
-            case ('*'):
-                tempNumber = Number(ArrayOfNumbers[x-1]) * Number(ArrayOfNumbers[x+1]);
-                break;
-            case ('-'):
-                tempNumber = Number(ArrayOfNumbers[x-1]) - Number(ArrayOfNumbers[x+1]);
-                break;
-            case ('+'):
-                tempNumber = Number(ArrayOfNumbers[x-1]) + Number(ArrayOfNumbers[x+1]);
-                break;
-        }
-        sumOfEquation += tempNumber;
-        document.getElementById("input").value = sumOfEquation;
+    else {
+        do {
+            if(elements[1] == '+') {
+               tempValue = Number(elements[0]) + Number(elements[2]);
+               elements[2] = tempValue;
+               elements.splice(0, 2);
+            }
+            else if(elements[1] == '-') {
+                tempValue = Number(elements[0]) - Number(elements[2]);
+                elements[2] = tempValue;
+                elements.splice(0, 2);
+            }
+        } while (elements.length != 1);
     }
+    output.value = elements[0];
 }
+   
+  
