@@ -7,7 +7,7 @@ let topInfo = document.getElementById("top");
 let bottom = document.getElementById("bottom");
 let fullEquation= [];
 //add element to expression
-function addToEquation(input) { 
+function addToEquation(input) {
     if (!isNaN(input) || input === '.') {
         number.push(input);
         bottom.innerHTML = number.join('');
@@ -99,11 +99,11 @@ function compute()
 
 function outputResult()
 {
-    console.log(ArrayOfNumbers[0].toString().length);
+    let decimals = ArrayOfNumbers[0].toString().split('.');
+    console.log(decimals);
 
-    if(ArrayOfNumbers[0].toString().length > 10)
+    if(decimals.length > 1 && decimals[1].length > 10)
     {
-        console.log(ArrayOfNumbers[0].length);
         ArrayOfNumbers[0] = ArrayOfNumbers[0].toFixed(10);
     }
     bottom.innerHTML = ArrayOfNumbers[0];

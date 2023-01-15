@@ -14,22 +14,33 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items:flex-end;
-    border: 3px solid black;
+    border: 10px solid black;
     width: 300px;
-    height: 100px;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    word-break: break-word; 
+
 }
-.txt {
-    margin-right: 10px;
-    height: 30px;
+#bottom {
+    min-height: 40px;
+    overflow: scroll;
+    overflow: auto;
+    margin: 10px;
     font-size: 30px;
+    text-align: center;
+
 }
 #top {
     font-size: 20px;
     font-weight: 100px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    margin: 10px;
+    overflow: scroll;
+    overflow: auto;
+    min-height: 30px;
+    text-align: center;
+
+
+
 }
 #inputlg {
     width: 100px;
@@ -40,12 +51,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 3px solid black;
+    border: 10px solid black;
     border-top: none;
     width: 300px;
     height: 400px;
-        border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 .buttonGroup {
     width: 300px;
@@ -59,8 +70,20 @@ body {
     width: 60px;
     height: 60px;
     border: 3px solid black;
+    box-shadow: 0 9px #999;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+.btns:hover {
+    background-color: black;
+    color: white;
+  }
+.btns:active {
+    background-color: black;
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+
 }
 #C, #D {
     margin: 10px;
@@ -69,3 +92,5 @@ body {
 #D {
     background-color: rgba(187, 26, 26, 0.998);
 }
+
+
