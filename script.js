@@ -1,13 +1,23 @@
 let number = [];
 let ArrayOfNumbers = [];
 let equationSymbol = true;
+let period = 0;
 let topInfo = document.getElementById("top");
 let bottom = document.getElementById("bottom");
 
 
 //add element to expression
 function addToEquation(input) {
-    if (!isNaN(input) || input === '.') {
+    if ((!isNaN(input) || input === '.')) {
+        if(input === '.')
+        {
+            period++;
+        }
+        if(period > 1)
+        {
+            period = 1;
+            return;
+        }
         number.push(input);
         bottom.innerHTML = number.join('');
         equationSymbol = false;
@@ -20,6 +30,7 @@ function addToEquation(input) {
         bottom.innerHTML = '';
         number = [];
         equationSymbol = true;
+        period = 0;
     }
 }
 
@@ -30,18 +41,18 @@ function clearAll() {
     number = [];
     topInfo.innerHTML = '';
     bottom.innerHTML = '0';
+    period = 0;
 }
     
 //delete
 function deleteEntry() {
-    if(number.length >= 0 && ArrayOfNumbers.length === 0) {
-        return;
-    }
-    else {
+        if(number[number.length - 1] === '.')
+        {
+            period = 0;
+        }
         equationSymbol = true;
         number.pop();
         bottom.innerHTML = number.join('');
-    }
 }
 
 
@@ -106,8 +117,7 @@ function outputResult()
     number = [];
     number.push(ArrayOfNumbers[0]);
     ArrayOfNumbers = [];
-    bottom.innerHTML = number[0];
-
+    period = 0;
 }
 
    
