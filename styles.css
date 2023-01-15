@@ -38,13 +38,8 @@ body {
     overflow: auto;
     min-height: 30px;
     text-align: center;
-
-
-
 }
-#inputlg {
-    width: 100px;
-}
+
 
 .btnContainer {
     display: flex;
@@ -81,9 +76,8 @@ body {
   }
 .btns:active {
     background-color: black;
-    box-shadow: 0 5px #666;
+    box-shadow: 0 1px #666;
     transform: translateY(2px);
-
 }
 #C, #D {
     margin: 10px;
@@ -92,7 +86,6 @@ body {
 #D {
     background-color: rgba(187, 26, 26, 0.998);
 }
-
 
 footer {
     margin: 20px;

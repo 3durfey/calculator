@@ -1,11 +1,10 @@
 let number = [];
 let ArrayOfNumbers = [];
-let equationResult;
 let equationSymbol = true;
-let firstEquation = false;
 let topInfo = document.getElementById("top");
 let bottom = document.getElementById("bottom");
-let fullEquation= [];
+
+
 //add element to expression
 function addToEquation(input) {
     if (!isNaN(input) || input === '.') {
@@ -35,26 +34,21 @@ function clearAll() {
     
 //delete
 function deleteEntry() {
-
-    if(number.length <= 1 && ArrayOfNumbers.length != 0) {
-        number = [];
-        bottom.innerHTML = '0';
-    }
-    else if (number.length <= 1) {
+    if(number.length >= 0 && ArrayOfNumbers.length === 0) {
         return;
     }
     else {
+        equationSymbol = true;
         number.pop();
         bottom.innerHTML = number.join('');
     }
-
 }
 
 
 //find result
 function compute()
 {
-    if (!isNaN(ArrayOfNumbers[ArrayOfNumbers.length - 1]) || number.length === 0) {
+    if (!isNaN(ArrayOfNumbers[ArrayOfNumbers.length - 1]) || number.length === 0 || ArrayOfNumbers.length === 0) {
         return;
     }
     ArrayOfNumbers.push(number.join(''));
@@ -104,8 +98,6 @@ function compute()
 function outputResult()
 {
     let decimals = ArrayOfNumbers[0].toString().split('.');
-    console.log(decimals);
-
     if(decimals.length > 1 && decimals[1].length > 10)
     {
         ArrayOfNumbers[0] = ArrayOfNumbers[0].toFixed(10);
@@ -117,8 +109,6 @@ function outputResult()
     bottom.innerHTML = number[0];
 
 }
-/*{
-   
-}*/
+
    
   
