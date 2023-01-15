@@ -36,14 +36,18 @@ function clearAll() {
 //delete
 function deleteEntry() {
 
-    if(number.length <= 1) {
+    if(number.length <= 1 && ArrayOfNumbers.length != 0) {
         number = [];
         bottom.innerHTML = '0';
+    }
+    else if (number.length <= 1) {
+        return;
     }
     else {
         number.pop();
         bottom.innerHTML = number.join('');
     }
+
 }
 
 
