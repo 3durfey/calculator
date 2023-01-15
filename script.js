@@ -9,19 +9,16 @@ let bottom = document.getElementById("bottom");
 //add element to expression
 function addToEquation(input) {
     if ((!isNaN(input) || input === '.')) {
-        if(input === '.')
-        {
+        if(input === '.') {
             period++;
         }
-        if(period > 1)
-        {
+        if(period > 1) {
             period = 1;
             return;
         }
         number.push(input);
         bottom.innerHTML = number.join('');
         equationSymbol = false;
-        return;
     }
     else if(equationSymbol != true) {
         ArrayOfNumbers.push(number.join(''));
