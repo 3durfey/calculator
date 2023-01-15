@@ -4,57 +4,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calculator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css"/>
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="shortcut icon" href="https://play-lh.googleusercontent.com/Z5BA3DYVKalnbCW8CGlIM3bN699i6QwRs5oE5kr_1-OYApm2cLPSlOP6mbdUJunXtw=w240-h480-rw">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="container-sm">
-      result
-      <input class="form-control" id="result" type="text" placeholder="0">
-      <input class="form-control" id="input" type="text" placeholder="0">
-
-      <div class="btn-group-vertical">
-      <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">    
-        <button class="btn btn-dark"class="buttons" id="C" onclick="clearAll()">AC</button>
-        <button class="btn btn-dark"class="buttons" id="D" onclick="deleteEntry()">CE</button>
-        <button class="btn btn-dark"class="buttons" id="/" onclick="addToEquation('/')">/</button>
-
+    <div class="txtContainer">
+      <lable class="txt" id="top" type="text" ></lable>
+      <lable class="txt" id="bottom" type="text" >0</lable>
       </div>
-      <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">
-        <button class="btn btn-dark"class="buttons" id="7" onclick="addToEquation('7')">7</button>
-        <button class="btn btn-dark"class="buttons" id="8" onclick="addToEquation('8')">8</button>
-        <button class="btn btn-dark"class="buttons" id="9" onclick="addToEquation('9')">9</button>
-        <button class="btn btn-dark"class="buttons" id="*" onclick="addToEquation('*')">*</button>
+    
+      <div class="btnContainer">
+
+      <div class="buttonGroup">    
+        <button class="btns" id="C" onclick="clearAll()">CLEAR</button>
+        <button class="btns" id="D" onclick="deleteEntry()">DELETE</button>
       </div>
-      <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">
-        <button class="btn btn-dark"class="buttons" id="4" onclick="addToEquation('4')">4</button>
-        <button class="btn btn-dark"class="buttons" id="5" onclick="addToEquation('5')">5</button>
-        <button class="btn btn-dark"class="buttons" id="6" onclick="addToEquation('6')">6</button>
-        <button class="btn btn-dark"class="buttons" id="-" onclick="addToEquation('-')">-</button>
+
+      <div class="buttonGroup">
+        <button class="btns" id="7" onclick="addToEquation('7')">7</button>
+        <button class="btns" id="8" onclick="addToEquation('8')">8</button>
+        <button class="btns" id="9" onclick="addToEquation('9')">9</button>
+        <button class="btns" id="*" onclick="addToEquation('×')">×</button>
       </div>
-      <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">    
-        <button class="btn btn-dark"class="buttons" id="1" onclick="addToEquation('1')">1</button>
-        <button class="btn btn-dark"class="buttons" id="2" onclick="addToEquation('2')">2</button>
-        <button class="btn btn-dark"class="buttons" id="3" onclick="addToEquation('3')">3</button>
-        <button class="btn btn-dark"class="buttons" id="+" onclick="addToEquation('+')">+</button>
+
+      <div class="buttonGroup"  >
+        <button class="btns" id="4" onclick="addToEquation('4')">4</button>
+        <button class="btns" id="5" onclick="addToEquation('5')">5</button>
+        <button class="btns" id="6" onclick="addToEquation('6')">6</button>
+        <button class="btns" id="-" onclick="addToEquation('-')">-</button>
       </div>
-      <div class="btn-group btn-group-lg" role="group" aria-label="buttonGroup">
-        <button class="btn btn-dark"class="buttons" id="0" onclick="addToEquation('0')">0</button>
-        <button class="btn btn-dark"class="buttons" id="period" onclick="addToEquation('.')">.</button>
-        <button class="btn btn-dark"class="buttons" id="=" onclick="equals()">=</button>
+
+      <div class="buttonGroup"  >    
+        <button class="btns" id="1" onclick="addToEquation('1')">1</button>
+        <button class="btns" id="2" onclick="addToEquation('2')">2</button>
+        <button class="btns" id="3" onclick="addToEquation('3')">3</button>
+        <button class="btns" id="+" onclick="addToEquation('+')">+</button>
       </div>
+
+      <div class="buttonGroup" >
+        <button class="btns" id="period" onclick="addToEquation('.')">.</button>
+        <button class="btns" id="0" onclick="addToEquation('0')">0</button>
+        <button class="btns" id="=" onclick="compute()">=</button>
+        <button class="btns" id="/" onclick="addToEquation('÷')">÷</button>
       </div>
-  </div>
+    </div>
 
-
-
-
-
-
-
-
-    <script type="text/javascript" src="js/mdb.min.js"></script>
-    <script type="text/javascript"></script>
   </body>
+
 </html>

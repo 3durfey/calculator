@@ -1,152 +1,120 @@
 let number = [];
-let ArrayOfNumbers = new Array();
+let ArrayOfNumbers = [];
 let equationResult;
+let equationSymbol = true;
 let firstEquation = false;
-let result = document.getElementById("result");
-let enteredValue = document.getElementById("input");
-
+let topInfo = document.getElementById("top");
+let bottom = document.getElementById("bottom");
+let fullEquation= [];
 //add element to expression
 function addToEquation(input) { 
     if (!isNaN(input) || input === '.') {
         number.push(input);
-        if(ArrayOfNumbers.length === 2) {
-            enteredValue.value = number.join('');
-            compute();
-            return;
-        }
-    } else {
-        if(firstEquation) {
-            ArrayOfNumbers[0] = equationResult;
-            ArrayOfNumbers[1] = input;
-        }
-        else {
-            ArrayOfNumbers.push(number.join(''));
-            ArrayOfNumbers.push(input);
-        }
-        number = [];
-        enteredValue.value = '';
+        bottom.innerHTML = number.join('');
+        equationSymbol = false;
+        return;
     }
-    number != '' ? result.value = number.join('') : result.value = ArrayOfNumbers.join('');
-    !isNaN(input) ? enteredValue.value = input : ArrayOfNumbers[0];
+    else if(equationSymbol != true) {
+        ArrayOfNumbers.push(number.join(''));
+        ArrayOfNumbers.push(input);
+        topInfo.innerHTML = ArrayOfNumbers.join('');
+        bottom.innerHTML = '';
+        number = [];
+        equationSymbol = true;
+    }
 }
+
 
 //clear equation
 function clearAll() {
-    document.getElementById("input").value = '';
     ArrayOfNumbers = [];
     number = [];
-    firstEquation = false;
-    result.value = '';
-    enteredValue.value = '0';
+    topInfo.innerHTML = '';
+    bottom.innerHTML = '0';
 }
     
 //delete
-const deleteEntry = () => {
-    if (firstEquation) {
-        console.log(1);
-        if(number.length === 1) {
-            number = ['0'];
-            input.value = number.join('');
-            console.log(2);
-        }
-        else {
-            number = [];
-            enteredValue.value = '';
-            console.log(3);
-        }
-    }
-    else if(number.length === 1) {
-        number = ['0'];
-        input.value = number.join('');
-        console.log(2);
+function deleteEntry() {
+
+    if(number.length <= 1) {
+        number = [];
+        bottom.innerHTML = '0';
     }
     else {
-        number = [];
-        enteredValue.value = '';
-        console.log(3);
+        number.pop();
+        bottom.innerHTML = number.join('');
     }
 }
-function equals() {
-    if (ArrayOfNumbers.length === 2) {
-        compute();
-        number = [];
-        input.value = '0';
-    }
-    else {
-        return;
-    }
-}
+
+
 //find result
 function compute()
 {
-    if (number.length === 1 && number[0] === '.') {
-        result.value = ArrayOfNumbers.join('');
-        console.log('if', ArrayOfNumbers[0]);
+    if (!isNaN(ArrayOfNumbers[ArrayOfNumbers.length - 1]) || number.length === 0) {
         return;
     }
-    firstEquation = true;
-    switch(ArrayOfNumbers[1]) {
-        case '+':
-            equationResult = Number(ArrayOfNumbers[0]) + Number(number.join(''));
-            break;
-        case '-':
-            equationResult = Number(ArrayOfNumbers[0]) - Number(number.join(''));
-            break;
-        case '*':
-            equationResult = Number(ArrayOfNumbers[0]) * Number(number.join(''));
-            break;
-        case '/':
-            equationResult = Number(ArrayOfNumbers[0]) / Number(number.join(''));
-            break;
-    } 
-    result.value = equationResult;
-    return equationResult;
-}
-
-/*{
-    if(number.length != 1) {
-        ArrayOfNumbers.push(number.join(''));
-    }
+    ArrayOfNumbers.push(number.join(''));
+    topInfo.innerHTML = ArrayOfNumbers.join('') + "=";
     let tempValue = 0;
     let operator = 1;
     do {
-        if(elements[operator] == '/') {
-           tempValue = Number(elements[operator - 1]) / Number(elements[operator + 1]);
-           elements[operator + 1] = tempValue;
-           elements.splice(operator - 1, 2);
+        if(ArrayOfNumbers[operator] == '÷') {
+           tempValue = Number(ArrayOfNumbers[operator - 1]) / Number(ArrayOfNumbers[operator + 1]);
+           ArrayOfNumbers[operator + 1] = tempValue;
+           ArrayOfNumbers.splice(operator - 1, 2);
         }
-        else if(elements[operator] == '*') {
-            tempValue = Number(elements[operator - 1]) * Number(elements[operator + 1]);
-            elements[operator + 1] = tempValue;
-            elements.splice(operator - 1, 2);
+        else if(ArrayOfNumbers[operator] == '×') {
+            tempValue = Number(ArrayOfNumbers[operator - 1]) * Number(ArrayOfNumbers[operator + 1]);
+            ArrayOfNumbers[operator + 1] = tempValue;
+            ArrayOfNumbers.splice(operator - 1, 2);
         }
-        if(!(operator + 2 > elements.length)){
+        if(!(operator + 2 > ArrayOfNumbers.length)){
             operator += 2;
         } 
         else {
             operator = 1;
         }
-    } while (elements.includes('/') || elements.includes('*'));
+    } while (ArrayOfNumbers.includes('÷') || ArrayOfNumbers.includes('×'));
 
-    if(elements.length === 1) {
-        result.value = elements[0];
+    if(ArrayOfNumbers.length === 1) {
+        outputResult();
         return;
     }
     else {
         do {
-            if(elements[1] == '+') {
-               tempValue = Number(elements[0]) + Number(elements[2]);
-               elements[2] = tempValue;
-               elements.splice(0, 2);
+            if(ArrayOfNumbers[1] == '+') {
+               tempValue = Number(ArrayOfNumbers[0]) + Number(ArrayOfNumbers[2]);
+               ArrayOfNumbers[2] = tempValue;
+               ArrayOfNumbers.splice(0, 2);
             }
-            else if(elements[1] == '-') {
-                tempValue = Number(elements[0]) - Number(elements[2]);
-                elements[2] = tempValue;
-                elements.splice(0, 2);
+            else if(ArrayOfNumbers[1] == '-') {
+                tempValue = Number(ArrayOfNumbers[0]) - Number(ArrayOfNumbers[2]);
+                ArrayOfNumbers[2] = tempValue;
+                ArrayOfNumbers.splice(0, 2);
             }
-        } while (elements.length != 1);
+        } while (ArrayOfNumbers.length != 1);
     }
-    result.value = elements[0];
+    outputResult();
+}
+
+function outputResult()
+{
+    console.log(ArrayOfNumbers[0].toString().length);
+
+    if(ArrayOfNumbers[0].toString().length > 10)
+    {
+        console.log(ArrayOfNumbers[0].length);
+        ArrayOfNumbers[0] = ArrayOfNumbers[0].toFixed(10);
+    }
+    bottom.innerHTML = ArrayOfNumbers[0];
+    number = [];
+    number.push(ArrayOfNumbers[0]);
+    ArrayOfNumbers = [];
+    bottom.innerHTML = number[0];
+
+}
+/*{
+   
 }*/
    
   
